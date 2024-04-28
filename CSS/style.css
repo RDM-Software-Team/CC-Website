@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+body{
+    margin-left: 100px;
+    margin-right:  100px;
+}
+  
+/*---------=-------------------------- Styling the header */
+header {
+    padding: 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+  
+nav ul {
+    list-style: none; 
+}
+  
+nav ul li {
+    display: inline; 
+}
+  
+nav ul li a {
+    color: #000000; 
+    text-decoration: none; 
+    padding: 10px 20px; 
+}
+  
+nav ul li a:hover {
+    background-color: #28dddd; 
+    border-radius: 5px;
+}
+  
+/* Styling the cart icon */
+.cart {
+    padding: 0 60px; 
+}
+  
+.cart img {
+    width: 30px; 
+    height: auto; 
+}
+
+/*---------=-------------------------- Styling the footer */
+footer {
+    background-color: #e9ec11; 
+    color: #000000; 
+    padding: 30px 0; 
+}
+  
+.footer-content {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: flex-start; 
+}
+  
+/* Styling the footer logo */
+.footer-logo h1 {
+    font-size: 24px; 
+    font-weight: bold; 
+}
+  
+.footer-logo p {
+    font-size: 14px; 
+}
+  
+/* Styling the footer links */
+  .footer-links ul {
+    list-style: none; 
+}
+  
+.footer-links ul li {
+    margin-bottom: 10px; 
+}
+  
+.footer-links ul li a {
+    color: #020202; 
+    text-decoration: none; 
+}
+  
+.footer-links ul li a:hover {
+    text-decoration: underline; 
+}
+  
+/* Styling the footer contact information */
+.footer-contact h3 {
+    font-size: 16px; 
+    margin-bottom: 10px; 
+}
+  
+.footer-contact p {
+    font-size: 14px; 
+    margin-bottom: 5px; 
+}
+  
+/* Styling the footer bottom section */
+.footer-bottom {
+    text-align: center; 
+    margin-top: 20px; 
+}
+  
+.footer-bottom p {
+    font-size: 12px; 
+}
+
+/* Centering the form */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+/*---------=-------------------------- Styling the form */
+form{
+    text-align: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #28dddd; 
+  }
+  
+  /* Show dropdown content when hovering over the icon */
+  .icon:hover .dropdown-content {
+    display: block;
+  }
