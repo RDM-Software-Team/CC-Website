@@ -1,18 +1,20 @@
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Computer Complex - Footer</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
 
-<body>
-  <footer>
-    <div class="footer-content">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Complex - Footer</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <footer>
+      <div class="footer-content">
 
         <div class="footer-logo">
-            <h1>Computer Complex</h1>
-            <p>Your one-stop solution for all IT needs</p>
+          <h1>Computer Complex</h1>
+          <p>Your one-stop solution for all IT needs</p>
         </div>
 
         <div class="footer-links">
@@ -30,12 +32,12 @@
             <p>Email: info@computercomplex.com</p>
             <p>Phone: 123-456-7890</p>
         </div>
-    </div>
+      </div>
 
-    <div class="footer-bottom">
-      <p>&copy; 2024 Computer Complex. All rights reserved.</p>
-    </div>
-
-  </footer>
-</body>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Computer Complex. All rights reserved.</p>
+      </div>
+      
+    </footer>
+  </body>
 </html>

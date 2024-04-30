@@ -1,4 +1,6 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+    
     <head>
         <title> Register </title>
         <link rel = "stylesheet" href = 'CSS/style.css'>                

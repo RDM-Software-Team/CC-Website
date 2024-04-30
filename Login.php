@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title> Logging-In </title>
         <link rel = "stylesheet" href = 'CSS/style.css'>                
