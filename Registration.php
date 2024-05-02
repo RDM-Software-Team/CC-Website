@@ -40,9 +40,11 @@
                 <div>
                     <input type="password" id="password" name="password" placeholder="Password" required>
                 </div> <br>
+
                 <div>
                     <input type="password" id="verify_password" name="verify_password" placeholder="verify Password" required>
                 </div> <br>
+                
                 <button type="submit">Register</button>
 
             </form>

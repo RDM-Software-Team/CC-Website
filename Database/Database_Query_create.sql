@@ -1,0 +1,98 @@
+--Database name Computer Complex
+
+ --------------------------------------- Execute 1st
+CREATE TABLE CUSTOMERS (
+    customer_id INT NOT NULL AUTO_INCREMENT ,
+    firstName VARCHAR(20) NOT NULL,
+    lastName VARCHAR(20) NOT NULL,
+    email VARCHAR(20) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
+    ddress VARCHAR(50) NOT NULL,
+    pwrd VARCHAR(20) NOT NULL,
+    PRIMARY KEY (customer_id)
+);
+
+CREATE TABLE ADMIN (
+    admin_id INT NOT NULL AUTO_INCREMENT ,
+    firstName VARCHAR(20) NOT NULL,
+    lastName VARCHAR(20) NOT NULL,
+    email VARCHAR(20) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
+    ddress VARCHAR(50) NOT NULL,
+    dep varchar(20) NOT NULL,
+    pwrd VARCHAR(20) NOT NULL,
+    PRIMARY KEY (admin_id)
+);
+
+CREATE TABLE BOOKINGS(
+    booking_id INT NOT NULL AUTO_INCREMENT,
+    booking_type VARCHAR(20) NOT NULL,
+    booked_on DATE NOT NULL,
+    booked_at TIME NOT NULL,
+    session_status BOOLEAN NOT NULL,
+    PRIMARY KEY (booking_id)
+);
+
+CREATE TABLE PRODUCTS (
+    product_id INT NOT NULL AUTO_INCREMENT,
+    pName VARCHAR(20) NOT NULL,
+    discription TEXT NOT NULL,
+    price DOUBLE NOT NULL,
+    category VARCHAR(20) NOT NULL,
+    PRIMARY KEY (product_id)
+);
+
+  --------------------------------------- Execute 2nd
+CREATE TABLE CARTS(
+    cart_id INT NOT NULL AUTO_INCREMENT,
+    cart_created DATE NOT NULL,
+    quantity INT NOT NULL,
+    product_id INT,
+    FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id) ON DELETE SET NULL,
+    PRIMARY KEY (cart_id)
+);
+
+  --------------------------------------- Execute 3rd
+CREATE TABLE ORDERS (
+    order_id INT NOT NULL AUTO_INCREMENT,
+    custumer_name varchar(20) NOT NULL,
+    order_Date DATE NOT NULL,
+    totalPrice DOUBLE NOT NULL,
+    customer_id INT,
+    cart_id INT,
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id) ON DELETE SET NULL,
+    FOREIGN KEY (cart_id) REFERENCES CARTS(cart_id) ON DELETE SET NULL,
+    PRIMARY KEY (order_id)
+);
+
+  --------------------------------------- Execute 4th
+CREATE TABLE PAYMENTS (
+    payment_id INT NOT NULL AUTO_INCREMENT,
+    paymet_type varchar(20) NOT NULL,
+    order_id INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES ORDERS(order_id),
+    PRIMARY KEY (payment_id)
+);
+
+CREATE TABLE USERS (
+    user_id INT NOT NULL AUTO_INCREMENT,
+    customer_id INT,
+    admin_id INT,
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id) ON DELETE SET NULL,
+    FOREIGN KEY (admin_id) REFERENCES ADMIN(admin_id) ON DELETE SET NULL,
+    PRIMARY KEY (user_id)
+);
+
+  --------------------------------------- Execute 5th
+CREATE TABLE REPORTS (
+    report_id INT NOT NULL AUTO_INCREMENT,
+    booking_id INT,
+    order_id INT,
+    product_id INT,
+    user_id INT,
+    FOREIGN KEY (booking_id) REFERENCES BOOKINGS(booking_id) ON DELETE SET NULL,
+    FOREIGN KEY (order_id) REFERENCES ORDERS(order_id) ON DELETE SET NULL,
+    FOREIGN KEY (product_id) REFERENCES PRODUCTS(product_id) ON DELETE SET NULL,
+    FOREIGN KEY (user_id) REFERENCES USERS(user_id) ON DELETE SET NULL,
+    PRIMARY KEY (report_id)
+);
