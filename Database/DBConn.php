@@ -2,7 +2,7 @@
 
     $dsn = "mysql:host=localhost;dname:computer_complex";
     $dbusername = "root";
-    $dbpassword = "";
+    $dbpassword = "cS4FJ?";
 
     try{
         $pdo = new PDO($dsn, $dbusername, $dbpassword);                 //connection to database
