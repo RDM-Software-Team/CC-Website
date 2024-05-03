@@ -13,7 +13,7 @@
 
         <!--form-->
         <div>
-            <form action="#" method="POST">
+            <form action="Database/form_dbh.php" method="POST">
 
                 <h2>SIGN-UP</h2> <br><br>
 

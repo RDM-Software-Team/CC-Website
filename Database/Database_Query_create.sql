@@ -1,4 +1,5 @@
 --Database name Computer Complex
+--I'm using a local database instead of mysql sever; it's called phpMyAdmin
 
  --------------------------------------- Execute 1st
 CREATE TABLE CUSTOMERS (

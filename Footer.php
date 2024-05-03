@@ -19,16 +19,15 @@
 
         <div class="footer-links">
             <ul>
-                <li><a href="Home.php">HOME</a></li>
-                <li><a href="Products.php">PRODUCTS</a></li>
-                <li><a href="Services.php">SERVICES</a></li>
-                <li><a href="About.php">ABOUT</a></li>
+                <a href="#"><img src="Images/meta.png" alt="facebook" width = "30px" height = "auto"></a></li>
+                <a href="#"><img src="Images/x.png" alt="twitter" width = "30px" height = "auto"></a></li>
+                <a href="#"><img src="Images/insta.png" alt="instagram" width = "30px" height = "auto"></a></li>
             </ul>
         </div>
 
         <div class="footer-contact">
             <h3>Contact Us</h3>
-            <p>123 Main Street, Cityville</p>
+            <p>123 Main Street, Downtown</p>
             <p>Email: info@computercomplex.com</p>
             <p>Phone: 123-456-7890</p>
         </div>

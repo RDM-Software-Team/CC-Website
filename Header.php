@@ -11,7 +11,7 @@
     <body>
         <header>
             <div>
-                <a href="Home.php"><img src="Images/log.jpg" width="120" height="77" alt="LOGO"></a>
+                <a href="Home.php"><img src="Images/logo.png" width="200" height="100" alt="LOGO"></a>
             </div>
 
             <nav>
