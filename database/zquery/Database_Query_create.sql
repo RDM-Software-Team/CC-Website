@@ -53,6 +53,39 @@ CREATE TABLE CARTS(
     PRIMARY KEY (cart_id)
 );
 
+CREATE TABLE repairs(
+    repair_id INT NOT NULL AUTO_INCREMENT,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id) ON DELETE SET NULL,
+    image LONGBLOB NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    booked_date DATE NOT NULL,
+    PRIMARY KEY (repair_id)
+);
+
+CREATE TABLE sell(
+    sell_id INT NOT NULL AUTO_INCREMENT,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id) ON DELETE SET NULL,
+    image1 LONGBLOB NOT NULL,
+    image2 LONGBLOB NOT NULL,
+    image3 LONGBLOB NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    price DOUBLE NOT NULL,
+    PRIMARY KEY (repair_id)
+);
+
+CREATE TABLE bookings(
+    booking_id INT NOT NULL AUTO_INCREMENT,
+    customer_id INT,
+    FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id) ON DELETE SET NULL,
+    duration INT NOT NULL,
+    booking_time TIME NOT NULL,
+    booked_date DATE NOT NULL,
+    PRIMARY KEY (booking_id)
+);
+
+
   --------------------------------------- Execute 3rd
 CREATE TABLE ORDERS (
     order_id INT NOT NULL AUTO_INCREMENT,

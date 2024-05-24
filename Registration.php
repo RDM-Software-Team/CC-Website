@@ -1,9 +1,28 @@
+<?php
+    require_once('Config/config.inc.php');
+    require_once('database/registration/signup_view.inc.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     
     <head>
         <title> Register </title>
-        <link rel = "stylesheet" href = 'CSS/style.css'>                
+        <link rel = "stylesheet" href = 'CSS/style.css'>
+        <script>
+            function validatePhoneNumber() {
+                var phoneNumber = document.getElementById("phone").value;
+                if (isNaN(phoneNumber)) {
+                    alert("Phone number must be a number.");
+                    return false;
+                }
+                if (phoneNumber.length !== 10) {
+                    alert("Phone number must have exactly 10 digits.");
+                    return false;
+                }
+                return true;
+            }
+        </script>                
     </head>
 
     <body>
@@ -12,42 +31,22 @@
         <?php  include 'Header.php'; ?>
 
         <!--form-->
-        <div>
-            <form action="Database/form_dbh.php" method="POST">
+        <div class="forms">
+            <form action="database/registration/signup.inc.php" method="POST" onsubmit="return validatePhoneNumber()">
 
                 <h2>SIGN-UP</h2> <br><br>
 
-                <div>
-                    <input type="text" id="firstName" name="firstName" placeholder="Name" required>
-                </div> <br>
-
-                <div>
-                    <input type="text" id="lastName" name="lastName" placeholder="Surname" required>
-                </div> <br>
-
-                <div>
-                    <input type="email" id="email" name="email" placeholder="Email" required>
-                </div> <br>
-
-                <div>
-                    <input type="number" id="phone" name="phone" placeholder="Contact" required>
-                </div> <br>
-
-                <div>
-                    <input type="text" id="address" name="address" placeholder="Address" required>
-                </div> <br>
-
-                <div>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
-                </div> <br>
-
-                <div>
-                    <input type="password" id="verify_password" name="verify_password" placeholder="verify Password" required>
-                </div> <br>
+                <?php signup_inputs() ?>
                 
                 <button type="submit">Register</button>
 
             </form>
+
+            <!--Error handlers messages-->
+            <?php
+                check_signup_error();
+            ?>
+
         </div>
 
         <!--footer-->

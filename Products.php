@@ -12,7 +12,10 @@
 
         <!--content-->
 
+        <?php include 'database/product.inc.php' ?>
+        
         <!--footer-->
         <?php include 'Footer.php'?>
-    </body>
+
+    </body>  
 </html>

@@ -3,7 +3,7 @@
 <html>
 
     <head>
-    <title> ABOUT </title>
+        <title> ABOUT </title>
         <link rel = "stylesheet" href = 'CSS/style.css'>                
     </head>
 
