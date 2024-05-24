@@ -5,7 +5,6 @@
     $dbpassword = 'cS4FJ?';
 
     try{
-        $dsn = "mysql:host=$dhost;dbname=$dname";
         $pdo = new PDO($dsn, $dbusername, $dbpassword);                 //connection to database
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  //error handling
     }catch(PDOException $e) {
