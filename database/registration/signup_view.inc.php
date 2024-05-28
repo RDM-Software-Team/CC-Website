@@ -57,6 +57,6 @@
     } else {
         echo '<input type="text" id="address" name="address" placeholder="Address">';
     }
-
+    
     echo '<input type="password" id="password" name="password" placeholder="Password">';
 }
