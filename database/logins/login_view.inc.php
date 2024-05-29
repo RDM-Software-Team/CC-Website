@@ -17,7 +17,7 @@
             echo "<br>";
 
             foreach ($errors as $error){
-                echo "<p>". $error ."</p>";
+                echo "<p>". $error ."</p><br>";
             }
 
             unset($_SESSION["errors_login"]);

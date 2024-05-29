@@ -10,7 +10,7 @@
   <body>
 
     <div> <!-- SEARCH -->
-      <form class="cart img" action="Database/search.inc.php" method="POST">
+      <form class="cart img" action="database/search.inc.php" method="POST">
 
         <ul>
           <input type="text" id="search" name="productsearch" placeholder="Category Search....">

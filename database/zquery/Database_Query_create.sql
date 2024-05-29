@@ -13,7 +13,7 @@ CREATE TABLE CUSTOMERS (
     PRIMARY KEY (customer_id)
 );
 
-CREATE TABLE ADMIN (
+CREATE TABLE ADMINS (
     admin_id INT NOT NULL AUTO_INCREMENT ,
     firstName VARCHAR(20) NOT NULL,
     lastName VARCHAR(20) NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE USERS (
     customer_id INT,
     admin_id INT,
     FOREIGN KEY (customer_id) REFERENCES CUSTOMERS(customer_id) ON DELETE SET NULL,
-    FOREIGN KEY (admin_id) REFERENCES ADMIN(admin_id) ON DELETE SET NULL,
+    FOREIGN KEY (admin_id) REFERENCES ADMINS(admin_id) ON DELETE SET NULL,
     PRIMARY KEY (user_id)
 );
 

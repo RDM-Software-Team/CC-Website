@@ -1,8 +1,6 @@
 <?php
 
-    include("../Header.php");
-
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
         $productSearch = $_POST["productsearch"];
 
         try{
@@ -39,6 +37,8 @@
     </head>
 
     <body>
+
+        <?php include("../Header.php"); ?>
 
         <h3>Search Results</h3>
 
