@@ -35,7 +35,7 @@
             }
 
             // Call our session
-            require_once(__DIR__ . '/../../Config/config.inc.php');
+            require_once(   '../../Config/config.inc.php');
 
             // Check if the are errors inside the array
             if($errors){
