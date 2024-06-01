@@ -27,7 +27,8 @@ try {
                         if(isset($_SESSION["user_id"])){
                             echo "<form action='database/cart.inc.php' method='POST'>";
                                 echo "<input type='hidden' name='product_id' value='" . htmlspecialchars($product["product_id"]) . "'>";
-                                echo "<button type='submit'>Add To Cart</button>";
+                                echo '<input type="hidden" name="action" value="increase">';
+                                echo "<button class='add-to-cart' data-product-id='<?=" .htmlspecialchars($product['product_id']). "?>'>Add To Cart</button>";
                             echo "</form>";
                         }
                     echo "</div>";
@@ -55,7 +56,8 @@ echo '<div class="category">';
                         if(isset($_SESSION["user_id"])){
                             echo "<form action='database/cart.inc.php' method='POST'>";
                                 echo "<input type='hidden' name='product_id' value='" . htmlspecialchars($product["product_id"]) . "'>";
-                                echo "<button type='submit'>Add To Cart</button>";
+                                echo '<input type="hidden" name="action" value="increase">';
+                                echo "<button class='add-to-cart' data-product-id='<?=" .htmlspecialchars($product['product_id']). "?>'>Add To Cart</button>";
                             echo "</form>";
                         }
                     echo "</div>";

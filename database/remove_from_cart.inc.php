@@ -33,7 +33,7 @@ try {
 
         // Redirect to the cart page
         header("Location: ../cart.php");
-        exit();
+        die();
     } else {
         throw new Exception("No active cart found.");
     }

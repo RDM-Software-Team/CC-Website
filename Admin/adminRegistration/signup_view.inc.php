@@ -9,7 +9,9 @@
             echo "<br>";
 
             foreach ($errors as $error){
-                echo "<p>". $error ."</p>";
+                echo "<div class='error-message'>
+                      <span class='close' onclick=\"this.parentElement.style.display='none';\">&times;
+                      </span>" . htmlspecialchars($error) . "</div>" ;
             }
 
             unset($_SESSION["errors_signup"]);

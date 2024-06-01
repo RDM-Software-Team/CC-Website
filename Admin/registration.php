@@ -40,12 +40,12 @@
                 
                 <button type="submit">Register</button>
 
-            </form>
+                <!--Error handlers messages-->
+                <?php
+                    check_signup_error();
+                ?>
 
-            <!--Error handlers messages-->
-            <?php
-                check_signup_error();
-            ?>
+            </form>            
 
         </div>
 

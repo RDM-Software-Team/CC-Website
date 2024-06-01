@@ -54,17 +54,10 @@
               <a href="Login.php">Log-In</a>
             </div>
           </div>
-        <?php } ?>
+        <?php } ?> <br>
 
       </div>
 
     </header>
-
-    <div>
-      <ul>
-        <?php include 'searching.php' ?> <br>
-      </ul>
-    </div>
-
   </body>
 </html>

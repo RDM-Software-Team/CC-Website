@@ -9,7 +9,7 @@
     <head>
         <title> Register </title>
         <link rel = "stylesheet" href = 'CSS/style.css'>
-        <script>
+        <!--<script>
             function validatePhoneNumber() {
                 var phoneNumber = document.getElementById("phone").value;
                 if (isNaN(phoneNumber)) {
@@ -22,7 +22,7 @@
                 }
                 return true;
             }
-        </script>                
+        </script> -->            
     </head>
 
     <body>
@@ -32,7 +32,7 @@
 
         <!--form-->
         <div class="forms">
-            <form action="database/registration/signup.inc.php" method="POST" onsubmit="return validatePhoneNumber()">
+            <form action="database/registration/signup.inc.php" method="POST" </form> <!--onsubmit="return validatePhoneNumber()"-->
 
                 <h2>SIGN-UP</h2> <br><br>
 
@@ -40,12 +40,12 @@
                 
                 <button type="submit">Register</button>
 
-            </form>
+                <!--Error handler messages-->
+                <?php
+                    check_signup_error();
+                ?>
 
-            <!--Error handlers messages-->
-            <?php
-                check_signup_error();
-            ?>
+            </form>
 
         </div>
 

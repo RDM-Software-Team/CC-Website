@@ -31,9 +31,12 @@
 
                 <button type="submit">LOG-IN</button>
 
-            </form>
+                <!--Error handler messages-->
+                <?php
+                    check_login_errors();
+                ?>
 
-            <?php check_login_errors() ?>
+            </form>
 
         </div>
 

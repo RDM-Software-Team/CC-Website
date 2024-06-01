@@ -9,6 +9,7 @@
     <body>
         <!--header-->
         <?php  include 'adminHeader.php'; ?>
+
         <div>
             <ul>
                 <?php include '../searching.php' ?> <br>
@@ -17,7 +18,24 @@
 
         <!--content-->
 
-        <?php include 'adminProducts/products_admin.inc.php' ?>
+        <?php
+            if (isset($_SESSION["search_results"])) {
+
+                $products = $_SESSION["search_results"];
+                search_products($products);
+                unset($_SESSION["search_results"]);
+            }else{
+                check_search_errors();
+                include '../database/product.inc.php';
+            }
+        ?>
+
+        <?php
+            if (!isset($_SESSION["search_results"])) { 
+
+                include '../database/product.inc.php'; 
+            }           
+        ?>
 
     </body>  
 </html>

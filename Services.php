@@ -10,7 +10,7 @@
         <!--header-->
         <?php  include 'Header.php'; ?>
         
-        <h2 class="headings">SERVICES</h2>
+        <h2 >SERVICES</h2>
         <!--content-->
         <div class="body">
             <div class="service-options">

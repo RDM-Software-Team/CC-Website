@@ -20,12 +20,15 @@
             if(input_empty($fName, $lName, $email, $addr, $pwd)){
                 $errors["empty_input"] = "Fill in all fields";
             }
+            
             /*if(email_validate($email)){
                 $errors["invalid_email"] = "Invalid email used";
             }*/
+
             if(username_email_taken($pdo, $email)){
                 $errors["email_taken"] = "Email already exists";
             }
+
             if (check_password_characters($pwd)) {
                 $errors["character_pattern"] = "Password should contain 8 characters or more (e.g., fgM7hdfug@)";
             }
@@ -51,7 +54,7 @@
                 die();
             }
             
-            //new customers addede to database
+            //new customers added to database
             new_customers($pdo, $fName, $lName, $email, $phone, $addr, $pwd);
             
             $pdo = null;
