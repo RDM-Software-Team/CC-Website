@@ -26,15 +26,8 @@
                 unset($_SESSION["search_results"]);
             }else{
                 check_search_errors();
-                include '../database/product.inc.php';
+                include 'adminProducts/products_admin.inc.php';
             }
-        ?>
-
-        <?php
-            if (!isset($_SESSION["search_results"])) { 
-
-                include '../database/product.inc.php'; 
-            }           
         ?>
 
     </body>  

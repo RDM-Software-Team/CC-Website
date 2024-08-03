@@ -1,8 +1,10 @@
 <?php
+
     try{
-        require_once 'DBConn.inc.php';
+
+        require_once ('DBConn.inc.php');
         require_once('Config/config.inc.php');
-        require_once('database/logins/login_view.inc.php');
+        require_once('logins/login_view.inc.php');
 
         // Prepare SQL statement
         $query = "SELECT * FROM products";

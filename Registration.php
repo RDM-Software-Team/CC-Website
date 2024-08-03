@@ -9,20 +9,7 @@
     <head>
         <title> Register </title>
         <link rel = "stylesheet" href = 'CSS/style.css'>
-        <!--<script>
-            function validatePhoneNumber() {
-                var phoneNumber = document.getElementById("phone").value;
-                if (isNaN(phoneNumber)) {
-                    alert("Phone number must be a number.");
-                    return false;
-                }
-                if (phoneNumber.length !== 10) {
-                    alert("Phone number must have exactly 10 digits.");
-                    return false;
-                }
-                return true;
-            }
-        </script> -->            
+        <script src="Javascript/validation.js"></script>          
     </head>
 
     <body>
