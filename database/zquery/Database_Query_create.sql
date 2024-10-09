@@ -1,5 +1,9 @@
 --Database name Computer Complex
 --I'm using a local database instead of mysql sever; it's called phpMyAdmin
+ALTER TABLE repairs
+MODIFY COLUMN booked_date DATETIME;
+
+ALTER TABLE repairs ADD COLUMN status ENUM('Pending', 'Accepted', 'Declined') DEFAULT 'Pending';
 
  --------------------------------------- Execute 1st
 CREATE TABLE CUSTOMERS (

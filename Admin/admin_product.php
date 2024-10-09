@@ -22,9 +22,11 @@
             if (isset($_SESSION["search_results"])) {
 
                 $products = $_SESSION["search_results"];
-                search_products($products);
+                search_products(products: $products);
                 unset($_SESSION["search_results"]);
+
             }else{
+                
                 check_search_errors();
                 include 'adminProducts/products_admin.inc.php';
             }

@@ -5,8 +5,11 @@
     $dbpassword = 'cS4FJ?';
 
     try{
-        $pdo = new PDO($dsn, $dbusername, $dbpassword);                 //connection to database
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  //error handling
+
+        $pdo = new PDO(dsn: $dsn, username: $dbusername, password: $dbpassword);          //connection to database
+        $pdo->setAttribute(attribute: PDO::ATTR_ERRMODE, value: PDO::ERRMODE_EXCEPTION);  //error handling
+
     }catch(PDOException $e) {
+
         echo "Connection failed: ". $e->getMessage();                   //error output
     }

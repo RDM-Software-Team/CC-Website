@@ -27,8 +27,8 @@
             <label for="category">Category:</label>
             <select id="category" name="category" required>
 
-                <option value="Monitors">Monitors</option>
-                <option value="Laptops">Laptops</option>
+                <option value="Monitor">Monitor</option>
+                <option value="Laptop">Laptop</option>
                 <option value="HDMI">HDMI</option>
                 <option value="Headsets">Headsets</option>
 

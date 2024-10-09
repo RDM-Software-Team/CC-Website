@@ -64,7 +64,6 @@
         echo "   
         <label for='department'>Department:</label>
         <select id='department' name='department'>
-            <option value='Owner'>Owner</option>
             <option value='Manager'>Manager</option>
             <option value='Reception'>Reception</option>
         </select>";

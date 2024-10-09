@@ -28,7 +28,7 @@
 
               <a href="bookings.php">BOOKINGS</a>
               <a href="orders.php">ORDERS</a>
-              <a href="adminRepairs/admins_repairs.inc.php">REPAIRS</a>
+              <a href="repairs_view.php">REPAIRS</a>
                 
             </div>
 
@@ -36,7 +36,7 @@
 
           <li><a href="admin_product.php">PRODUCTS</a></li>
           <li><a href="admin.php">ADD_PRODUCTS</a></li>
-          <li><a href="#">SELLING</a></li>
+          <li><a href="admin_view.php">SELLING</a></li>
           <li><a href="report.php">REPORTS</a></li>
 
         </ul>
