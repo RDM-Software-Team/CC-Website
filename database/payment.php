@@ -32,7 +32,11 @@ try {
         $stmt = $pdo->prepare("UPDATE carts SET status = 'completed' WHERE cart_id = ?");
         $stmt->execute([$order['cart_id']]);
 
-        echo "Payment successful! Order placed.";
+        //echo "Payment successful! Order placed.";
+        echo "<script>
+                alert('Payment successful! Order placed.');
+                window.location.href = 'Home.php';  
+            </script>";
         exit();
     }
 
