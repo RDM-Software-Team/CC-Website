@@ -117,7 +117,9 @@
 
             <!-- Place order button -->
             <div class='cart-item-actions'>
-                <button>PLACE ORDER</button>
+                <form action="database/place_order.php" method="POST">
+                    <button type="submit">PLACE ORDER</button>
+                </form>
             </div><br>
 
         <?php } ?>
