@@ -8,7 +8,6 @@
   </head>
   <body>
     <header>
-
       <div>
         <a href="admin_product.php"><img src="../Images/logo.png" width="200" height="100" alt="LOGO"></a> 
       </div>
@@ -23,7 +22,7 @@
             </div>
           </li>
 
-          <li>REREVIEW
+          <li>REVIEW
             <div class="dropdown-content">
               <a href="sell_view.php">SELL</a>
               <a href="repairs_view.php">REPAIR</a>
@@ -40,7 +39,6 @@
             </div>
           </li>
 
-          <li><a href="orders.php">ORDERS</a></li>
           <li><a href="report.php">REPORTS</a></li>
         </ul>
       </nav>
