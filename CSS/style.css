@@ -38,8 +38,9 @@ nav ul {
 }
 
 nav ul li {
-    position: relative;
-    margin-right: 20px;
+    position: relative; /* Make sure the dropdown is relative to its parent */
+    padding: 16px;
+    display: inline-block;
 }
 
 nav ul li a {
@@ -163,10 +164,11 @@ form{
 /* Dropdown Styling */
 .dropdown-content {
     display: none;
-    position: absolute;
+    top: 100%; /* Place dropdown directly below the li */
+    left: 0; /* Align dropdown to the left of the li */
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -181,14 +183,13 @@ form{
     background-color: #ddd;
 }
 
+/* Show dropdown when hovering over the li */
 nav ul li:hover .dropdown-content {
     display: block;
+    position: relative;
 }
 
-/* Show dropdown content when hovering over the li */
-.li:hover .dropdown-content {
-    display: block;
-}
+
 
 /* Cart Icon Dropdown */
 .icon {
@@ -243,14 +244,14 @@ h2 {
     margin-bottom: 10px;
 }
 
-ul {
+/*ul {
     list-style-type: none;
     padding: 0;
 }
 
 li {
     margin-bottom: 5px;
-}
+}*/
 /*---------=-------------------------- Styling service page */
 .body {
     margin: 0;
