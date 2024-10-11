@@ -7,7 +7,6 @@
     <title>Header</Header></title>
     <link rel="stylesheet" href="../CSS/style.css">
 
-
   </head>
 
   <body>
@@ -22,21 +21,32 @@
           
           <li class="li">
 
-            SERVICES
+            REQUESTS
 
             <div class="dropdown-content">
 
-              <a href="bookings.php">BOOKINGS</a>
-              <a href="orders.php">ORDERS</a>
+              <a href="sell_view.php">SELLS</a>
               <a href="repairs_view.php">REPAIRS</a>
+              <a href="bookings.php">BOOKINGS</a>
                 
             </div>
 
           </li>
 
-          <li><a href="admin_product.php">PRODUCTS</a></li>
-          <li><a href="admin.php">ADD_PRODUCTS</a></li>
-          <li><a href="admin_view.php">SELLING</a></li>
+          <li class="li">
+
+            PRODUCTS
+
+            <div class="dropdown-content">
+
+              <a href="admin_product.php">PRODUCTS</a>
+              <a href="admin.php">ADD_PRODUCTS</a>
+                
+            </div>
+
+          </li>
+
+          <li><a href="orders.php">ORDERS</a></li>
           <li><a href="report.php">REPORTS</a></li>
 
         </ul>

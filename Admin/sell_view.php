@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['decline_id'])) {
                                 <button class="btn accept-btn" onclick="acceptRequest()">Accept</button>
 
                                 <!-- Decline Button (uses form for POST request) -->
-                                <form action="admin_view.php" method="POST" style="display:inline-block;">
+                                <form action="sell_view.php" method="POST" style="display:inline-block;">
                                     <input type="hidden" name="decline_id" value="<?php echo htmlspecialchars($request['sell_id']); ?>">
                                     <button type="submit" class="btn decline-btn">Decline</button>
                                 </form>

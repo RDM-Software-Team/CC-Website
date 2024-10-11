@@ -1,10 +1,21 @@
---Database name Computer Complex
---I'm using a local database instead of mysql sever; it's called phpMyAdmin
+--update database
+--Ronewa only update using the last three queries, D all.
 ALTER TABLE repairs
 MODIFY COLUMN booked_date DATETIME;
 
 ALTER TABLE repairs ADD COLUMN status ENUM('Pending', 'Accepted', 'Declined') DEFAULT 'Pending';
 
+ALTER TABLE bookings
+MODIFY COLUMN booking_time ENUM('8:00-10:00', '10:00-12:00', '12:00-14:00', '14:00-16:00') NOT NULL;
+
+ALTER TABLE bookings
+MODIFY COLUMN duration ENUM('20min', '1hr30min', '2hr') NOT NULL;
+
+ALTER TABLE bookings
+ADD COLUMN status ENUM('pending', 'accepted', 'declined') DEFAULT 'pending';
+
+--Database name Computer Complex
+--I'm using a local database instead of mysql sever; it's called phpMyAdmin
  --------------------------------------- Execute 1st
 CREATE TABLE CUSTOMERS (
     customer_id INT NOT NULL AUTO_INCREMENT ,

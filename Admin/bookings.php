@@ -1,158 +1,134 @@
+<?php
+require_once "../database/DBConn.inc.php";
+
+// Fetch all bookings with 'pending' status
+$statement = $pdo->query("SELECT * FROM bookings WHERE status = 'pending'");
+$bookings = $statement->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Admin Bookings</title>
-        <style>
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-bottom: 20px;
-            }
-            th, td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: left;
-            }
-            th {
-                background-color: #f2f2f2;
-            }
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Bookings</title>
+    <style>
+        .body2 {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
 
-    <body>
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-        <?php  include 'adminHeader.php'; ?>
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-        <h2>Admin Bookings</h2>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 500px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        button {
+            padding: 8px 12px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-accept {
+            background-color: #4CAF50;
+        }
+
+        .btn-decline {
+            background-color: #f44336;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+<!-- Include admin header -->
+<?php include 'adminHeader.php'; ?>
+<h1 style="text-align: center;">Booking Requests</h1>
+<div class="body2">
+    <div class="container">
+        
         <table>
             <thead>
-
-                <tr>
-                    <th>Booking ID</th>
-                    <th>Duration</th>
-                    <th>Booking Time</th>
-                    <th>Booking Date</th>
-                    <th>Customer Name</th>
-                </tr>
-
+            <tr>
+                <th>Booking ID</th>
+                <th>Customer ID</th>
+                <th>Duration</th>
+                <th>Booking Time</th>
+                <th>Booking Date</th>
+                <th>Actions</th>
+            </tr>
             </thead>
-
-            <tbody>
-                <!-- Sample data for demonstration purposes -->
-                <tr>
-                    <td>1</td>
-                    <td>10min</td>
-                    <td>09:00</td>
-                    <td>2024-05-14</td>
-                    <td>John Doe</td>
+            <tbody id="booking-table">
+            <?php foreach ($bookings as $booking): ?>
+                <tr id="booking-<?php echo $booking['booking_id']; ?>">
+                    <td><?php echo $booking['booking_id']; ?></td>
+                    <td><?php echo $booking['customer_id']; ?></td>
+                    <td><?php echo $booking['duration']; ?></td>
+                    <td><?php echo $booking['booking_time']; ?></td>
+                    <td><?php echo $booking['booked_date']; ?></td>
+                    <td>
+                        <button class="btn-accept" onclick="updateBookingStatus(<?php echo $booking['booking_id']; ?>, 'accepted')">Accept</button>
+                        <button class="btn-decline" onclick="updateBookingStatus(<?php echo $booking['booking_id']; ?>, 'declined')">Decline</button>
+                    </td>
                 </tr>
-
-                <tr>
-                    <td>2</td>
-                    <td>50min</td>
-                    <td>10:30</td>
-                    <td>2024-05-15</td>
-                    <td>Jane Smith</td>
-                </tr>
-
-                <tr>
-                    <td>3</td>
-                    <td>1hr 30min</td>
-                    <td>14:00</td>
-                    <td>2024-05-16</td>
-                    <td>Michael Johnson</td>
-                </tr>
-
-                <tr>
-                    <td>4</td>
-                    <td>10min</td>
-                    <td>11:00</td>
-                    <td>2024-05-17</td>
-                    <td>Sarah Williams</td>
-                </tr>
-
-                <tr>
-                    <td>5</td>
-                    <td>50min</td>
-                    <td>12:30</td>
-                    <td>2024-05-18</td>
-                    <td>David Brown</td>
-                </tr>
-
-                <tr>
-                    <td>6</td>
-                    <td>1hr 30min</td>
-                    <td>15:00</td>
-                    <td>2024-05-19</td>
-                    <td>Emily Wilson</td>
-                </tr>
-
-                <tr>
-                    <td>7</td>
-                    <td>10min</td>
-                    <td>08:30</td>
-                    <td>2024-05-20</td>
-                    <td>James Taylor</td>
-                </tr>
-
-                <tr>
-                    <td>8</td>
-                    <td>50min</td>
-                    <td>13:00</td>
-                    <td>2024-05-21</td>
-                    <td>Amy Miller</td>
-                </tr>
-
-                <tr>
-                    <td>9</td>
-                    <td>1hr 30min</td>
-                    <td>16:00</td>
-                    <td>2024-05-22</td>
-                    <td>Robert Martinez</td>
-                </tr>
-
-                <tr>
-                    <td>10</td>
-                    <td>10min</td>
-                    <td>09:30</td>
-                    <td>2024-05-23</td>
-                    <td>Jennifer Garcia</td>
-                </tr>
-
-                <tr>
-                    <td>11</td>
-                    <td>50min</td>
-                    <td>11:00</td>
-                    <td>2024-05-24</td>
-                    <td>Christopher Hernandez</td>
-                </tr>
-
-                <tr>
-                    <td>12</td>
-                    <td>1hr 30min</td>
-                    <td>14:30</td>
-                    <td>2024-05-25</td>
-                    <td>Mary Lopez</td>
-                </tr>
-
-                <tr>
-                    <td>13</td>
-                    <td>10min</td>
-                    <td>10:00</td>
-                    <td>2024-05-26</td>
-                    <td>Matthew Gonzalez</td>
-                </tr>
-
-                <tr>
-                    <td>14</td>
-                    <td>50min</td>
-                    <td>12:30</td>
-                    <td>2024-05-27</td>
-                    <td>Linda Perez</td>
-                </tr>
-
+            <?php endforeach; ?>
             </tbody>
         </table>
-    </body>
+    </div>
+</div>
+
+<script>
+    // JavaScript function to update booking status and show messages
+    function updateBookingStatus(bookingId, status) {
+        const confirmed = confirm(`Are you sure you want to mark this booking as '${status}'?`);
+        if (!confirmed) return;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'update_booking_status.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function () {
+            if (this.status === 200) {
+                alert(`Booking has been ${status}.`);
+
+                // Remove the booking from the table
+                const row = document.getElementById(`booking-${bookingId}`);
+                row.parentNode.removeChild(row);
+            } else {
+                alert('Error updating booking status. Please try again.');
+            }
+        };
+        xhr.send(`booking_id=${bookingId}&status=${status}`);
+    }
+</script>
+
+</body>
 </html>

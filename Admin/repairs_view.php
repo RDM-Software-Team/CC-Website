@@ -35,7 +35,6 @@ $repairs = $stmt->fetchAll();
 <html>
     <head>
         <title> Admin Repairs View </title>
-        <link rel="stylesheet" href="CSS/admin_styles.css">
     </head>
     <body>
         <!--header-->
@@ -43,7 +42,7 @@ $repairs = $stmt->fetchAll();
 
         <!--content-->
         <div class="admin-repairs">
-            <h2>Pending Repair Requests</h2><br>
+            <h2 style="text-align: center;">Repairs Requests</h2><br>
 
             <table border="1">
                 <thead>

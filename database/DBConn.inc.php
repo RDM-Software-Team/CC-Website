@@ -2,7 +2,7 @@
 
     $dsn = 'mysql:host=localhost;dbname=computer_complex';
     $dbusername = 'root';
-    $dbpassword = '';
+    $dbpassword = 'cS4FJ?';
 
     try{
 
