@@ -2,50 +2,39 @@
 // Ensure session and database connection
 require_once '../database/DBConn.inc.php'; 
 
-// Fetch only pending sell requests from the database
+// Fetch all sell requests that are 'In Review'
 $sql = "SELECT sell.sell_id, sell.customer_id, sell.image1, sell.image2, sell.image3, sell.description, sell.price, 
                customers.firstName AS customer_name
         FROM sell 
         JOIN customers ON sell.customer_id = customers.customer_id
-        WHERE sell.status = 'Pending'";  // Fetch only pending requests
+        WHERE sell.status = 'In Review'";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
-$sellRequests = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$reviewRequests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Handle the Decline action
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['decline_id'])) {
-    $sell_id = $_POST['decline_id'];
+// Handle Complete or Decline after Review action
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $sell_id = $_POST['sell_id'];
+    $action = $_POST['action'];
 
-    // Delete the record from the database
-    $deleteSQL = "DELETE FROM sell WHERE sell_id = :sell_id";
-    $deleteStmt = $pdo->prepare($deleteSQL);
-    $deleteStmt->bindParam(':sell_id', $sell_id);
-
-    if ($deleteStmt->execute()) {
-        echo "<script>alert('Sell request declined and record deleted.');</script>";
-        header('Refresh:0'); // Refresh the page to update the request list
-        exit(); // Exit after refreshing to prevent further script execution
-    } else {
-        echo "<script>alert('Error in deleting the request.');</script>";
+    // Update the status based on the action
+    if ($action == 'complete') {
+        $status = 'Complete';
+    } elseif ($action == 'decline') {
+        $status = 'Declined after Review';
     }
-}
 
-// Handle the Accept action
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accept_id'])) {
-    $sell_id = $_POST['accept_id'];
-
-    // Update the record status to 'In Review'
-    $updateSQL = "UPDATE sell SET status = 'In Review' WHERE sell_id = :sell_id";
+    $updateSQL = "UPDATE sell SET status = :status WHERE sell_id = :sell_id";
     $updateStmt = $pdo->prepare($updateSQL);
+    $updateStmt->bindParam(':status', $status);
     $updateStmt->bindParam(':sell_id', $sell_id);
 
     if ($updateStmt->execute()) {
-        echo "<script>alert('Sell request accepted and moved to review.');</script>";
-        header('Refresh:0'); // Refresh the page to update the request list
-        exit(); // Exit after refreshing to prevent further script execution
+        echo "<script>alert('Sell request status updated to $status');</script>";
+        header('Refresh:0');
     } else {
-        echo "<script>alert('Error in accepting the request.');</script>";
+        echo "<script>alert('Error updating sell request status.');</script>";
     }
 }
 
@@ -54,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accept_id'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Admin - View Sell Requests</title>
+    <title>Admin - Review Sell Requests</title>
     <style>
         /* Add your styles here */
         body {
@@ -88,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accept_id'])) {
             border: none;
             border-radius: 5px;
         }
-        .accept-btn {
+        .complete-btn {
             background-color: #4CAF50;
             color: white;
         }
@@ -96,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accept_id'])) {
             background-color: #f44336;
             color: white;
         }
-        .decline-btn:hover, .accept-btn:hover {
+        .decline-btn:hover, .complete-btn:hover {
             opacity: 0.8;
         }
     </style>
@@ -106,10 +95,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accept_id'])) {
     <!-- Admin Header -->
     <?php include 'adminHeader.php'; ?>
     
-    <h2 style="text-align: center;">Sell Requests</h2>
+    <h2 style="text-align: center;">Review Sell Requests</h2>
 
     <div class="requests">
-        <?php if ($sellRequests): ?>
+        <?php if ($reviewRequests): ?>
             <table>
                 <thead>
                     <tr>
@@ -122,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accept_id'])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($sellRequests as $request): ?>
+                    <?php foreach ($reviewRequests as $request): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($request['sell_id']); ?></td>
                             <td><?php echo htmlspecialchars($request['customer_name']); ?></td>
@@ -134,15 +123,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accept_id'])) {
                                 <img src="data:image/jpeg;base64,<?php echo $request['image3']; ?>" alt="Aerial Image">
                             </td>
                             <td>
-                                <!-- Accept Button -->
-                                <form action="sell_view.php" method="POST" style="display:inline-block;">
-                                    <input type="hidden" name="accept_id" value="<?php echo htmlspecialchars($request['sell_id']); ?>">
-                                    <button type="submit" class="btn accept-btn">Accept</button>
+                                <!-- Complete Button -->
+                                <form action="sell_reviews.php" method="POST" style="display:inline-block;">
+                                    <input type="hidden" name="sell_id" value="<?php echo htmlspecialchars($request['sell_id']); ?>">
+                                    <input type="hidden" name="action" value="complete">
+                                    <button type="submit" class="btn complete-btn">Complete</button>
                                 </form>
 
                                 <!-- Decline Button -->
-                                <form action="sell_view.php" method="POST" style="display:inline-block;">
-                                    <input type="hidden" name="decline_id" value="<?php echo htmlspecialchars($request['sell_id']); ?>">
+                                <form action="sell_reviews.php" method="POST" style="display:inline-block;">
+                                    <input type="hidden" name="sell_id" value="<?php echo htmlspecialchars($request['sell_id']); ?>">
+                                    <input type="hidden" name="action" value="decline">
                                     <button type="submit" class="btn decline-btn">Decline</button>
                                 </form>
                             </td>
@@ -151,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['accept_id'])) {
                 </tbody>
             </table>
         <?php else: ?>
-            <p>No sell requests found.</p>
+            <p>No sell requests for review.</p>
         <?php endif; ?>
     </div>
 

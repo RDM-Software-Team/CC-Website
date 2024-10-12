@@ -24,7 +24,7 @@
 
           <li>REVIEW
             <div class="dropdown-content">
-              <a href="sell_view.php">SELL</a>
+              <a href="sell_reviews.php">SELL</a>
               <a href="repairs_review.php">REPAIR</a>
               <a href="bookings.php">BOOKING</a>
             </div>
