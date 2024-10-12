@@ -14,19 +14,26 @@
             $errors = [];
             //error handlers
             if(is_input_empty($email, $pwd)){
+
                 $errors["empty_input"] = "Fill in all fields";
             }
             
             $result = get_user($pdo, $email, 'admins');
+
             if($result){
+
                 $userRole = 'admin';
+                $department = $result['dep'];
+
             }else{
+                
                 $result = get_user($pdo, $email, 'customers');
                 $userRole = 'customer';
             }
             
 
             if(is_username_wrong($result)){    
+                
                 $errors["wrong_email"] =  "Incorrect email";
             }
             
@@ -34,11 +41,12 @@
                 $errors["wrong_password"] = "Incorrect password!";
             }
 
-            // Call our session
-            require_once(   '../../Config/config.inc.php');
+            // Call session
+            require_once('../../Config/config.inc.php');
 
             // Check if the are errors inside the array
             if($errors){
+
                 $_SESSION["errors_login"] = $errors;
                 
                 header("Location: ../../login.php");
@@ -56,6 +64,7 @@
                 $_SESSION["user_id"] = $result["admin_id"];
                 $_SESSION["user_name"] = htmlspecialchars($result["firstName"]);
                 $_SESSION["user_role"] = $userRole;
+                $_SESSION["department"] = $department;  
                 $_SESSION["last_regeneration"] = time(); //Reset the time
                 header("Location: ../../Admin/admin_product.php?login=success");
                 
@@ -79,10 +88,12 @@
             die();
 
         }catch(PDOException $e){
+
             die("Query Failed: ".$e->getMessage());
         }
 
     }else{
+        
         header("Location: ../../login.php");
 
     }
