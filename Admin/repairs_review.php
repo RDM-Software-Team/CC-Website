@@ -2,40 +2,38 @@
 require_once '../database/DBConn.inc.php';
 require_once "../Config/config.inc.php";  
 
-// Check if an admin action was taken (accept or decline)
+// Check if an admin action was taken (complete or decline after review)
 if (isset($_POST['action']) && isset($_POST['repair_id'])) {
     $repair_id = $_POST['repair_id'];
     $action = $_POST['action'];
     
     // Update status based on the action
-    if ($action == 'accept') {
-        // Change status to 'In Review' instead of 'Accepted'
-        $sql = "UPDATE repairs SET status = 'In Review' WHERE repair_id = :repair_id";
-    } elseif ($action == 'decline') {
-        $sql = "UPDATE repairs SET status = 'Declined' WHERE repair_id = :repair_id";
+    if ($action == 'complete') {
+        $sql = "UPDATE repairs SET status = 'Complete' WHERE repair_id = :repair_id";
+    } elseif ($action == 'declined_after_review') {
+        $sql = "UPDATE repairs SET status = 'Declined after Review' WHERE repair_id = :repair_id";
     }
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':repair_id', $repair_id);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Repair request updated successfully');</script>";
+        echo "<script>alert('Repair review updated successfully');</script>";
     } else {
-        echo "<script>alert('Error updating repair request');</script>";
+        echo "<script>alert('Error updating repair review');</script>";
     }
 }
 
-// Fetch all pending repair requests
-$sql = "SELECT * FROM repairs WHERE status = 'Pending'";
+// Fetch all repair requests that are in 'In Review' status
+$sql = "SELECT * FROM repairs WHERE status = 'In Review'";
 $stmt = $pdo->query($sql);
 $repairs = $stmt->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <html>
     <head>
-        <title>Admin Repairs View</title>
+        <title>Admin Repair Reviews</title>
         <style>
             /* Add some basic styling for the table and form */
             body {
@@ -89,11 +87,11 @@ $repairs = $stmt->fetchAll();
                 margin-right: 5px;
             }
 
-            .btn-accept {
+            .btn-complete {
                 background-color: #4CAF50;
             }
 
-            .btn-decline {
+            .btn-decline-review {
                 background-color: #f44336;
             }
 
@@ -107,7 +105,7 @@ $repairs = $stmt->fetchAll();
         <?php include 'AdminHeader.php'; ?>
 
         <div class="container">
-            <h2>Pending Repair Requests</h2>
+            <h2>Repairs Under Review</h2>
 
             <table>
                 <thead>
@@ -131,11 +129,10 @@ $repairs = $stmt->fetchAll();
                         </td>
                         <td><?php echo $repair['booked_date']; ?></td>
                         <td>
-                            <form method="post" action="repairs_view.php">
+                            <form method="post" action="repairs_review.php">
                                 <input type="hidden" name="repair_id" value="<?php echo $repair['repair_id']; ?>">
-                                <!-- Updated button logic: Accept sets status to 'In Review' -->
-                                <button type="submit" name="action" value="accept" class="btn-accept">Accept</button>
-                                <button type="submit" name="action" value="decline" class="btn-decline">Decline</button>
+                                <button type="submit" name="action" value="complete" class="btn-complete">Complete</button>
+                                <button type="submit" name="action" value="declined_after_review" class="btn-decline-review">Decline after Review</button>
                             </form>
                         </td>
                     </tr>

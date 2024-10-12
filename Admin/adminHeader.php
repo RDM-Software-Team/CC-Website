@@ -25,12 +25,10 @@
           <li>REVIEW
             <div class="dropdown-content">
               <a href="sell_view.php">SELL</a>
-              <a href="repairs_view.php">REPAIR</a>
+              <a href="repairs_review.php">REPAIR</a>
               <a href="bookings.php">BOOKING</a>
             </div>
           </li>
-
-          <li><a href="orders.php">ORDERS</a></li>
 
           <li>PRODUCT
             <div class="dropdown-content">
@@ -38,6 +36,8 @@
               <a href="admin_product.php">REMOVE_PRODUCTS</a>
             </div>
           </li>
+
+          <li><a href="orders.php">ORDERS</a></li>
 
           <li><a href="report.php">REPORTS</a></li>
         </ul>

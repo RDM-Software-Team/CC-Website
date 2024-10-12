@@ -1,9 +1,14 @@
 --update database
---Ronewa only update using the last three queries, D all.
+--D, perform all these changes following this sequence
 ALTER TABLE repairs
 MODIFY COLUMN booked_date DATETIME;
 
 ALTER TABLE repairs ADD COLUMN status ENUM('Pending', 'Accepted', 'Declined') DEFAULT 'Pending';
+
+--Ronewa start from here
+ALTER TABLE repairs MODIFY COLUMN status ENUM('Pending', 'Accepted', 'Declined', 'In Review', 'Complete', 'Declined after Review') DEFAULT 'Pending';
+
+ALTER TABLE sell ADD COLUMN status ENUM('Pending', 'Accepted', 'Declined', 'In Review', 'Complete', 'Declined after Review') DEFAULT 'Pending';
 
 ALTER TABLE bookings
 MODIFY COLUMN booking_time ENUM('8:00-10:00', '10:00-12:00', '12:00-14:00', '14:00-16:00') NOT NULL;
