@@ -5,6 +5,7 @@
         $productSearch = $_POST["productsearch"];
 
         try{
+
             require_once "../DBConn.inc.php";
             require_once "search_model.inc.php";
             require_once "search_contr.inc.php";
@@ -14,6 +15,7 @@
 
             // Error handlers
             if (empty($products)) {
+
                 $errors["no_product"] = "Product not found";
             }
 
@@ -21,8 +23,11 @@
             require_once('../../Config/config.inc.php');
 
             if ($errors) {
+
                 $_SESSION["errors_search"] = $errors;
+
             } else {
+                
                 $_SESSION["search_results"] = $products;
             }
 

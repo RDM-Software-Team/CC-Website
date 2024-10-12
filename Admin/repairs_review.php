@@ -1,41 +1,54 @@
 <?php
-require_once '../database/DBConn.inc.php';
-require_once "../Config/config.inc.php";  
 
-// Check if an admin action was taken (complete or decline after review)
-if (isset($_POST['action']) && isset($_POST['repair_id'])) {
-    $repair_id = $_POST['repair_id'];
-    $action = $_POST['action'];
-    
-    // Update status based on the action
-    if ($action == 'complete') {
-        $sql = "UPDATE repairs SET status = 'Complete' WHERE repair_id = :repair_id";
-    } elseif ($action == 'declined_after_review') {
-        $sql = "UPDATE repairs SET status = 'Declined after Review' WHERE repair_id = :repair_id";
+    require_once '../database/DBConn.inc.php';
+    require_once "../Config/config.inc.php";  
+
+    // Check if an admin action was taken (complete or decline after review)
+    if (isset($_POST['action']) && isset($_POST['repair_id'])) {
+
+        $repair_id = $_POST['repair_id'];
+        $action = $_POST['action'];
+        
+        // Update status based on the action
+        if ($action == 'complete') {
+
+            $sql = "UPDATE repairs SET status = 'Complete' WHERE repair_id = :repair_id";
+
+        } elseif ($action == 'declined_after_review') {
+
+            $sql = "UPDATE repairs SET status = 'Declined after Review' WHERE repair_id = :repair_id";
+        }
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':repair_id', $repair_id);
+
+        if ($stmt->execute()) {
+
+            echo "<script>alert('Repair review updated successfully');</script>";
+
+        } else {
+
+            echo "<script>alert('Error updating repair review');</script>";
+        }
     }
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':repair_id', $repair_id);
+    // Fetch all repair requests that are in 'In Review' status
+    $sql = "SELECT * FROM repairs WHERE status = 'In Review'";
+    $stmt = $pdo->query($sql);
+    $repairs = $stmt->fetchAll();
 
-    if ($stmt->execute()) {
-        echo "<script>alert('Repair review updated successfully');</script>";
-    } else {
-        echo "<script>alert('Error updating repair review');</script>";
-    }
-}
-
-// Fetch all repair requests that are in 'In Review' status
-$sql = "SELECT * FROM repairs WHERE status = 'In Review'";
-$stmt = $pdo->query($sql);
-$repairs = $stmt->fetchAll();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <html>
+
     <head>
+
         <title>Admin Repair Reviews</title>
+
         <style>
-            /* Add some basic styling for the table and form */
+
             body {
                 font-family: Arial, sans-serif;
                 background-color: #f4f4f4;
@@ -98,8 +111,11 @@ $repairs = $stmt->fetchAll();
             button:hover {
                 opacity: 0.8;
             }
+
         </style>
+
     </head>
+
     <body>
         <!-- Include Admin Header -->
         <?php include 'AdminHeader.php'; ?>
@@ -108,19 +124,25 @@ $repairs = $stmt->fetchAll();
             <h2>Repairs Under Review</h2>
 
             <table>
+
                 <thead>
                     <tr>
+
                         <th>Repair ID</th>
                         <th>Customer ID</th>
                         <th>Description</th>
                         <th>Image</th>
                         <th>Booked Date</th>
                         <th>Actions</th>
+
                     </tr>
                 </thead>
+
                 <tbody>
+
                     <?php foreach ($repairs as $repair): ?>
                     <tr>
+
                         <td><?php echo $repair['repair_id']; ?></td>
                         <td><?php echo $repair['customer_id']; ?></td>
                         <td><?php echo htmlspecialchars($repair['description']); ?></td>
@@ -130,16 +152,19 @@ $repairs = $stmt->fetchAll();
                         <td><?php echo $repair['booked_date']; ?></td>
                         <td>
                             <form method="post" action="repairs_review.php">
+
                                 <input type="hidden" name="repair_id" value="<?php echo $repair['repair_id']; ?>">
                                 <button type="submit" name="action" value="complete" class="btn-complete">Complete</button>
                                 <button type="submit" name="action" value="declined_after_review" class="btn-decline-review">Decline after Review</button>
+
                             </form>
                         </td>
+
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
 
+        </div>
     </body>
 </html>

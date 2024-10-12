@@ -39,7 +39,7 @@
 
               <a href="sell_reviews.php">SELL</a>
               <a href="repairs_review.php">REPAIR</a>
-              <a href="bookings.php">BOOKING</a>
+              <a href="booking_review.php">BOOKING</a>
 
             </div>
           </li>

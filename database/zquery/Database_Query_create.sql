@@ -19,6 +19,10 @@ MODIFY COLUMN duration ENUM('20min', '1hr30min', '2hr') NOT NULL;
 ALTER TABLE bookings
 ADD COLUMN status ENUM('pending', 'accepted', 'declined') DEFAULT 'pending';
 
+ALTER TABLE customers MODIFY phone VARCHAR(10);
+ALTER TABLE admins MODIFY phone VARCHAR(10);
+
+
 --Database name Computer Complex
 --I'm using a local database instead of mysql sever; it's called phpMyAdmin
  --------------------------------------- Execute 1st

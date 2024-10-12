@@ -92,12 +92,14 @@
     </head>
 
     <body>
+
         <!--header-->
         <?php include 'Header.php'; ?>
 
         <!--content-->
         <div class="forms">
             <form action="repairs.php" method="post" enctype="multipart/form-data">
+
                 <h2>REPAIRS</h2><br><br>
 
                 <label for="image">Upload Image:</label>
@@ -107,59 +109,83 @@
                 <textarea id="description" name="description" rows="4" cols="50" required></textarea>
 
                 <table>
+
                     <thead>
                         <tr>
+
                             <th>Day</th>
                             <th>08:00-10:00</th>
                             <th>12:00-14:00</th>
                             <th>16:00-17:00</th>
+
                         </tr>
                     </thead>
+
                     <tbody>
+
                         <tr>
+
                             <td>Monday</td>
                             <td><input type="radio" name="monday" value="08:00-10:00"></td>
                             <td><input type="radio" name="monday" value="12:00-14:00"></td>
                             <td><input type="radio" name="monday" value="16:00-17:00"></td>
+
                         </tr>
+
                         <tr>
                             <td>Tuesday</td>
                             <td><input type="radio" name="tuesday" value="08:00-10:00"></td>
                             <td><input type="radio" name="tuesday" value="12:00-14:00"></td>
                             <td><input type="radio" name="tuesday" value="16:00-17:00"></td>
                         </tr>
+
                         <tr>
+
                             <td>Wednesday</td>
                             <td><input type="radio" name="wednesday" value="08:00-10:00"></td>
                             <td><input type="radio" name="wednesday" value="12:00-14:00"></td>
                             <td><input type="radio" name="wednesday" value="16:00-17:00"></td>
+
                         </tr>
+
                         <tr>
+
                             <td>Thursday</td>
                             <td><input type="radio" name="thursday" value="08:00-10:00"></td>
                             <td><input type="radio" name="thursday" value="12:00-14:00"></td>
                             <td><input type="radio" name="thursday" value="16:00-17:00"></td>
+
                         </tr>
+
                         <tr>
+
                             <td>Friday</td>
                             <td><input type="radio" name="friday" value="08:00-10:00"></td>
                             <td><input type="radio" name="friday" value="12:00-14:00"></td>
                             <td><input type="radio" name="friday" value="16:00-17:00"></td>
+
                         </tr>
+
                         <tr>
+
                             <td>Saturday</td>
                             <td><input type="radio" name="saturday" value="08:00-10:00"></td>
                             <td><input type="radio" name="saturday" value="12:00-14:00"></td>
                             <td><input type="radio" name="saturday" value="16:00-17:00"></td>
+
                         </tr>
+
                     </tbody>
                 </table>
 
                 <button type="submit">Submit</button>
+
             </form>
+
         </div>
 
         <!--footer-->
         <?php include 'Footer.php'; ?>
+        
     </body>
 </html>

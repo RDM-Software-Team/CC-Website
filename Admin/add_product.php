@@ -11,6 +11,7 @@
 
         // Handle file upload
         if (isset($_FILES['images']) && $_FILES['images']['error'][0] == UPLOAD_ERR_OK) {
+            
             $image = $_FILES['images']['tmp_name'][0];
             $imageType = pathinfo(path: $_FILES['images']['name'][0], flags: PATHINFO_EXTENSION);
             

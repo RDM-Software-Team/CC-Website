@@ -8,6 +8,7 @@
 
         // Check if the admin is logged in
         if (!isset($_SESSION["user_id"])) {
+
             header(header: "Location: ../login.php");
             exit();
         }
@@ -32,6 +33,7 @@
 
             echo "<div class='category'>";
                 foreach ($groupedProducts as $category => $productsInCategory) {
+
                     echo "<h2>$category</h2>"; // Output heading with category name
 
                     // Extract unique product names within each category
@@ -56,6 +58,7 @@
                                 echo "<p>R " . htmlspecialchars(string: $product["price"]). "<p>";
 
                                 if(isset($_SESSION["user_id"])){
+                                    
                                     echo "<form action='adminProducts/delete_product_admin.php' method='POST'>";
 
                                         echo "<input type='hidden' name='product_id' value='" . htmlspecialchars(string: $product["product_id"]) . "'>";

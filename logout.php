@@ -8,7 +8,9 @@
     <body>
 
         <form action = "database/logout.inc.php" method="POST">
+
             <button>Logout</button>
+            
         </form>
 
     </body>

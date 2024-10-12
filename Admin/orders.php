@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin Orders</title>
+
         <style>
+
             table {
                 width: 100%;
                 border-collapse: collapse;
                 margin-bottom: 20px;
             }
+
             th, td {
                 border: 1px solid #ddd;
                 padding: 8px;
                 text-align: left;
             }
+
             th {
                 background-color: #f2f2f2;
             }
+
         </style>
+
     </head>
 
     <body>
+
         <?php  include 'adminHeader.php'; ?>
 
         <h2>Admin Orders</h2>
         <table>
+
             <thead>
-                
                 <tr>
+
                     <th>Order ID</th>
                     <th>Customer Name</th>
                     <th>Order Date</th>
                     <th>Total Price</th>
                     <th>Customer ID</th>
-                </tr>
 
+                </tr>
             </thead>
 
             <tbody>

@@ -1,6 +1,8 @@
 <?php
+
     require_once('Config/config.inc.php');
     require_once('database/registration/signup_view.inc.php');
+    
 ?>
 
 <!DOCTYPE html>

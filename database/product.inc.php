@@ -18,6 +18,7 @@
         if ($products) {
 
             $groupedProducts = [];
+            
             foreach ($products as $product) {
 
                 $category = $product["category"];

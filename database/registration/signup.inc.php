@@ -1,6 +1,7 @@
 <?php
 
     if($_SERVER["REQUEST_METHOD"] === "POST"){
+
         $fName = $_POST["firstname"];
         $lName = $_POST["lastname"];
         $email = $_POST["email"];
@@ -9,6 +10,7 @@
         $pwd = $_POST["password"];
 
         try{
+
             require_once "../DBConn.inc.php";
             require_once "signup_model.inc.php";
             require_once "signup_contr.inc.php";
@@ -18,6 +20,7 @@
 
             //error handlers
             if(input_empty($fName, $lName, $email, $addr, $pwd)){
+
                 $errors["empty_input"] = "Fill in all fields";
             }
             
@@ -26,10 +29,12 @@
             }*/
 
             if(username_email_taken($pdo, $email)){
+
                 $errors["email_taken"] = "Email already exists";
             }
 
             if (check_password_characters($pwd)) {
+
                 $errors["character_pattern"] = "Password should contain 8 characters or more (e.g., fgM7hdfug@)";
             }
 
@@ -38,14 +43,17 @@
 
             // Check if the are errors inside the array
             if($errors){
+
                 $_SESSION["errors_signup"] = $errors;
 
                 $signupData = [
+
                     "firstName" => $fName,
                     "lastName"  => $lName,
                     "email" => $email,
                     "phone" => $phone,
                     "address" => $addr,
+
                 ];
 
                 $_SESSION["signup_data"] = $signupData;
@@ -64,9 +72,11 @@
             die();
 
         }catch(PDOException $e){
+
             die("Query Failed: ".$e->getMessage());
         }
 
     }else{
+        
         header("Location: ../../registration.php");
     }

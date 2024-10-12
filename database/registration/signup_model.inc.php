@@ -3,6 +3,7 @@
     declare (strict_types= 1); // type declaration set true
 
     function get_username_email(object $pdo, string $email){
+
         $query = "SELECT email FROM customers WHERE email = :email;";
         $stmt = $pdo->prepare($query);
         $stmt -> bindParam(":email", $email);
@@ -10,9 +11,10 @@
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $results;
-    } // email inquired
+    }
 
     function set_customer(object $pdo, string $fName, string $lName, string $email, int $phone, string $addr, string $pwd){
+
         $query = "INSERT INTO customers (firstName, lastName, email, phone, ddress, pwrd)
                   VALUES (:firstName, :lastName, :email, :phone, :ddress, :pwrd);";
             
@@ -20,8 +22,10 @@
 
             // security measure : time it take to validate a password.
             $options = [
+
                 'cost' => 12
             ];
+            
             // hash the input value for password.
             $hasedPwd = password_hash($pwd, PASSWORD_BCRYPT, $options);
 

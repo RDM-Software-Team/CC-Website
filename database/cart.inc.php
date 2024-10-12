@@ -4,6 +4,7 @@
     require_once "../Config/config.inc.php";
 
     if (!isset($_SESSION["user_id"])) {
+
         header("Location: ../login.php");
         die();
     }
@@ -14,6 +15,7 @@
     $cart_created = date('Y-m-d H:i:s');
 
     try {
+
         // Start transaction
         $pdo->beginTransaction();
 
@@ -26,10 +28,13 @@
 
         // Create a new cart if none exists
         if (!$cart) {
+
             $stmt = $pdo->prepare("INSERT INTO carts (customer_id, cart_created, status) VALUES (?, ?, 'active')");
             $stmt->execute([$customer_id, $cart_created]);
             $cart_id = $pdo->lastInsertId();
+
         } else {
+
             $cart_id = $cart['cart_id'];
         }
 
@@ -50,8 +55,10 @@
 
                 $stmt = $pdo->prepare("UPDATE cart_items SET quantity = quantity - 1 WHERE cart_id = ? AND product_id = ?");
                 $stmt->execute([$cart_id, $product_id]);
+
             }
         } else {
+
             if ($action == 'increase') {
 
                 $stmt = $pdo->prepare("INSERT INTO cart_items (cart_id, product_id, quantity) VALUES (?, ?, 1)");
@@ -67,6 +74,7 @@
         die();
 
     } catch (PDOException $e) {
+        
         $pdo->rollBack();
         // Send a simple error response
         echo json_encode(["status" => "error", "message" => $e->getMessage()]);

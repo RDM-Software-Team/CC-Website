@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Monthly Report</title>
+
         <style>
+
             table {
                 width: 100%;
                 border-collapse: collapse;
                 margin-bottom: 20px;
             }
+
             th, td {
                 border: 1px solid #ddd;
                 padding: 8px;
                 text-align: left;
             }
+
             th {
                 background-color: #f2f2f2;
             }
+
         </style>
+
     </head>
 
     <body>
@@ -29,17 +37,23 @@
 
         <h3>Top-Selling Products</h3>
         <table>
+
             <thead>
                 <tr>
+
                     <th>Product Name</th>
                     <th>Number Sold</th>
+
                 </tr>
             </thead>
+
             <tbody>
                 <!-- Sample data for demonstration purposes -->
                 <tr>
+
                     <td>Laptop</td>
                     <td>150</td>
+                    
                 </tr>
                 <tr>
                     <td>Smartphone</td>
