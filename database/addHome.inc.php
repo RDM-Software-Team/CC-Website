@@ -24,7 +24,7 @@
 
             foreach ($products as $product) {
 
-                if ($product['price'] < 5000 && $lessThan5000Count < 5) {
+                if ($product['price'] < 5000 && $lessThan5000Count < 6) {
 
                     echo "<div class='products'>";
                         echo "<div class='product'>";
